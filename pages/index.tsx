@@ -1,10 +1,9 @@
 import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { SignInButton, useUser, UserButton } from '@clerk/nextjs';
 
 export default function Home() {
-  const { user, isSignedIn } = useUser();
+  const { isSignedIn } = useUser();
 
   return (
     <>
@@ -15,9 +14,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        {/* <ConnectButton /> */}
-        {!isSignedIn && <SignInButton mode="modal" />}
-        {isSignedIn && <UserButton />}
+        {!isSignedIn && <SignInButton mode="modal" redirectUrl='/screens/walletConnect'/>}
+        <UserButton/>
       </main>
     </>
   );
