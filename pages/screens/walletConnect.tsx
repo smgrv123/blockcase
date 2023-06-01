@@ -5,7 +5,7 @@ import CustomConnectWalletBtn from '../components/customConnectWalletBtn';
 import { Flex } from '@chakra-ui/react';
 import ParentWrapper from '../components/parentWrapper';
 
-function walletConnect() {
+function WalletConnect() {
   const { user } = useUser();
 
   console.log('user', user);
@@ -43,4 +43,4 @@ function walletConnect() {
   );
 }
 
-export default walletConnect;
+export default WalletConnect;

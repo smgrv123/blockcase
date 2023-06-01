@@ -56,7 +56,7 @@ function CustomConnectWalletBtn({
                     marginRight: 4,
                   }}
                 >
-                  {chain.iconUrl && <img alt={chain.name ?? 'Chain icon'} src={chain.iconUrl} style={{ width: 12, height: 12 }} />}
+                  {/* {chain.iconUrl && <img alt={chain.name ?? 'Chain icon'} src={chain.iconUrl} style={{ width: 12, height: 12 }} />} */}
                 </div>
               )}
               {chain.name}
