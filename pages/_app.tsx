@@ -6,6 +6,7 @@ import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import { polygonMumbai } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
+import { ClerkProvider } from '@clerk/nextjs';
 
 const { chains, publicClient } = configureChains([polygonMumbai], [alchemyProvider({ apiKey: process.env.ALCHEMY_ID! }), publicProvider()]);
 
@@ -25,7 +26,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider chains={chains}>
-        <Component {...pageProps} />
+        <ClerkProvider>
+          <Component {...pageProps} />
+        </ClerkProvider>
       </RainbowKitProvider>
     </WagmiConfig>
   );
