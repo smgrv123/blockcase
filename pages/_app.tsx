@@ -7,8 +7,12 @@ import { polygonMumbai } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import { ClerkProvider } from '@clerk/nextjs';
+import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 
-const { chains, publicClient } = configureChains([polygonMumbai], [alchemyProvider({ apiKey: process.env.ALCHEMY_ID! }), publicProvider()]);
+const { chains, publicClient } = configureChains(
+  [polygonMumbai],
+  [alchemyProvider({ apiKey: process.env.ALCHEMY_ID! }), publicProvider()]
+);
 
 const { connectors } = getDefaultWallets({
   appName: 'My RainbowKit App',
@@ -27,7 +31,10 @@ export default function App({ Component, pageProps }: AppProps) {
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider chains={chains}>
         <ClerkProvider>
-          <Component {...pageProps} />
+          <ChakraProvider>
+            <ColorModeScript initialColorMode="dark" />
+            <Component {...pageProps} />
+          </ChakraProvider>
         </ClerkProvider>
       </RainbowKitProvider>
     </WagmiConfig>

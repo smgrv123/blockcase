@@ -1,6 +1,10 @@
 import Head from 'next/head';
-import styles from '@/styles/Home.module.css';
-import { SignInButton, useUser, UserButton } from '@clerk/nextjs';
+import { SignInButton, useUser } from '@clerk/nextjs';
+import {
+  Box,
+  Heading,
+} from '@chakra-ui/react';
+import ParentWrapper from './components/parentWrapper';
 
 export default function Home() {
   const { isSignedIn } = useUser();
@@ -13,9 +17,36 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        {!isSignedIn && <SignInButton mode="modal" redirectUrl='/screens/walletConnect'/>}
-        <UserButton/>
+      <main>
+        <ParentWrapper>
+          <Box
+            flexDirection={'row'}
+            alignSelf={'center'}
+            justifyContent={'space-between'}
+            alignContent={'center'}
+          >
+            <Box alignItems={'center'}>
+              <Box>
+                <Heading
+                  mb="8"
+                  fontWeight="extrabold"
+                  size="2xl"
+                  bgGradient="linear(to-r, orange.500, orange.300, pink.500)"
+                  bgClip="text"
+                >
+                  Project Name
+                </Heading>
+              </Box>
+              {!isSignedIn && (
+                <SignInButton mode="modal" redirectUrl="/screens/walletConnect">
+                  <Box bg="orange.600" padding={5} alignContent={'ce'}>
+                    Sign In
+                  </Box>
+                </SignInButton>
+              )}
+            </Box>
+          </Box>
+        </ParentWrapper>
       </main>
     </>
   );
