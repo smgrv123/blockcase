@@ -4,6 +4,7 @@ import CustomConnectWalletBtn from '../components/customConnectWalletBtn';
 
 import { Flex } from '@chakra-ui/react';
 import ParentWrapper from '../components/parentWrapper';
+import Link from 'next/link';
 
 function WalletConnect() {
   const { user } = useUser();
@@ -12,9 +13,7 @@ function WalletConnect() {
 
   return (
     <ParentWrapper>
-      <Flex flex={1}>
-        <div>{user?.fullName}</div>
-        <div>{user?.primaryEmailAddress?.emailAddress}</div>
+      <Flex flexDirection={'column'}>
         <ConnectButton.Custom>
           {(props) => {
             // Note: If your app doesn't use authentication, you
@@ -38,6 +37,7 @@ function WalletConnect() {
           }}
         </ConnectButton.Custom>
         <UserButton />
+        <Link href={'/screens/kyc'} >Complete Kyc</Link>
       </Flex>
     </ParentWrapper>
   );
